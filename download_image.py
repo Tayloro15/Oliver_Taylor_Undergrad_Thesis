@@ -1,6 +1,6 @@
 import subprocess
 import xml.etree.ElementTree as ET
-import csv
+
 
 def get_image_file_name(xml_file_name):
     """ takes a xml file name and  returns the file names of the all images from xml file as a list"""
@@ -17,17 +17,9 @@ def create_usable_filename(name_string):
     usable_filename = name_string.replace('/','-') + '.jpeg'
     return usable_filename
 
-def write_CSV(filename,input_list):
-    with open(filename, "a") as csvfile:
-        csvwriter = csv.writer(csvfile)
-        for input in input_list:
-            usable_input = create_usable_filename(input)
-            csvwriter.writerow([usable_input])
-        csvwriter.writerow(["____new_data____"])
-
 
 def run_wget(file_name_list,download_path):
-    """takes list of file name from get_image_file_name and download location of the image and downloads the all of them that were in the xml file"""
+    """takes list of file name from get_image_file_name and the download location of the image and downloads the all of them that were in the xml file"""
     download_count =0
     for file_name in file_name_list:
         usable_filename = create_usable_filename(file_name)
